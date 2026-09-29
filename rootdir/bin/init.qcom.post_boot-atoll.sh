@@ -51,7 +51,7 @@ function configure_zram_parameters() {
 		let zRamSizeMB=4096
 	fi
 
-	echo lz4 > /sys/block/zram0/comp_algorithm
+	echo lz4hc > /sys/block/zram0/comp_algorithm
 
 	if [ -f /sys/block/zram0/disksize ]; then
 		if [ -f /sys/block/zram0/use_dedup ]; then
@@ -130,8 +130,8 @@ echo -6 >  /sys/devices/system/cpu/cpu6/sched_load_boost
 echo -6 >  /sys/devices/system/cpu/cpu7/sched_load_boost
 echo 85 > /sys/devices/system/cpu/cpu6/cpufreq/schedutil/hispeed_load
 
-echo "0:1248000" > /sys/module/cpu_boost/parameters/input_boost_freq
-echo 40 > /sys/module/cpu_boost/parameters/input_boost_ms
+echo "0:1248000 6:1267200" > /sys/module/cpu_boost/parameters/input_boost_freq
+echo 60 > /sys/module/cpu_boost/parameters/input_boost_ms
 
 # Enable bus-dcvs
 for device in /sys/devices/platform/soc
